@@ -11,9 +11,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, GridViewFragment.newInstance())
-            .addToBackStack(GridViewFragment::class.java.name)
-            .commitAllowingStateLoss()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, GridViewFragment.newInstance())
+                .commit()
+        }
+
     }
 }
